@@ -1,1 +1,57 @@
-<p>side-bar works!</p>
+<div class="desktop">
+    <ng-template #header>
+        <!-- <img src="assets/icons/crm.png" alt=""> -->
+    </ng-template>
+    <div class="nav-section">
+        <mat-action-list *ngFor="let nav of navs">
+            <!-- <div class="title">{{nav.label}}</div> -->
+
+            <button mat-list-item (click)="onActionClick(nav.action)">
+                <div class="btn-nav">
+
+                    <img [src]="iconPath + nav.icon" alt="" srcset="">
+                    <span>
+
+                        {{nav.label}}
+                    </span>
+                    <!-- <div class="count center">
+                        {{n.count |async}}
+                    </div> -->
+                </div>
+            </button>
+
+        </mat-action-list>
+    </div>
+
+    <div class="setting">
+
+        <div class="action">
+
+            <button mat-button>
+                <img src="assets/icons/settings.png" alt="">
+                <span>
+                    {{btn.setting}}
+
+                </span>
+
+            </button>
+        </div>
+        <div class="action">
+
+            <button mat-button (click)="signout()">
+                <img src="assets/icons/logout.png" alt="">
+                <span>
+                    {{btn.signout}}
+
+                </span>
+
+            </button>
+        </div>
+        <div class="version">
+            {{version}}
+        </div>
+    </div>
+
+
+
+</div>
