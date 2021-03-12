@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
 
         if (rc === Constans.SUCCESSCODE) {
           this.app.connect(res);
-          this.app.navTo('entry', false);
+          this.app.navTo('main/dashboard', false);
         } else {
           console.log('rc !== Constans.SUCCESSCODE');
           this.app.openDialog({ title, body, type: 'error' }).subscribe(() => this.app.loaderOff());
