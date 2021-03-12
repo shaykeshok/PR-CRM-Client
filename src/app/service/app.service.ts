@@ -16,7 +16,8 @@ const ERROR_TITLE = '😯אוי ואבוי';
 export class AppService {
   
   
-  
+  public showNav = false;
+
   
   
   version = 'version 1.0.0';

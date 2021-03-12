@@ -11,16 +11,16 @@ import { Constans } from '../../common/common.model';
 })
 export class LoginComponent implements OnInit {
   title = {
-    title: 'האישור האישי',
-    welcome: 'ברוכים הבאים'
+    title: 'PR-CRM',
+    welcome: 'Welcome'
   };
   public get inputs() {
     return this.fs.inputs;
   }
   rForm = this.fs.getForm();
   btn = {
-    submit: 'כניסה',
-    forgot: 'שכחתם סיסמה?'
+    submit: 'Sign in',
+    forgot: 'Forgot Password?'
   };
   public get version() {
     return this.app.version;

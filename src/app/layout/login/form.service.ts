@@ -12,7 +12,7 @@ export class FormService {
     {
       type: 'number',
       name: 'userId',
-      label: 'תעודת זהות',
+      label: 'User Id',
       formControl: 'userId',
       appearance: 'legacy',
       autocomplete: 'off',
@@ -22,7 +22,7 @@ export class FormService {
       formControl: 'pass',
       name: 'pass',
       type: 'password',
-      label: 'סיסמה',
+      label: 'Password',
       appearance: 'legacy',
       validators: EprValidator.ValidatePassword
     },

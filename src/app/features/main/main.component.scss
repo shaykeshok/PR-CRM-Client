@@ -1,0 +1,22 @@
+@import "./../../../assets/styles/media.scss";
+
+:host {
+    height: 100vh;
+    margin: auto;
+    overflow: hidden;
+  }
+  mat-drawer-container {
+    height: 100vh;
+    mat-drawer {
+      width: 170px;
+      background-color: #d4d1d1;
+    }
+    .wrapper {
+      height: 100vh;
+      display: grid;
+      grid-template-rows: $header-height 1fr;
+      .body {
+        height: $all-screen;
+      }
+    }
+  }

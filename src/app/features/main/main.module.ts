@@ -7,6 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { SideBarComponent } from './side-bar/side-bar.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -20,7 +22,10 @@ import { SideBarComponent } from './side-bar/side-bar.component';
     DashboardModule,
     MatMenuModule,
     MatButtonModule,
-    RouterModule
+    RouterModule,
+    MatSidenavModule,
+    MatListModule,
+
   ]
 })
 export class MainModule { }
