@@ -1,0 +1,67 @@
+/*Max For tablets: */
+
+$bpoint-pc: 1440px;
+$bpoint-min-tablet: 770px;
+$bpoint-tablet-landscape: 1200px;
+$bpoint-tablet: 844px;
+/*Max For Mobiles: */
+$bpoint-mobil: 600px;
+
+$color-primary: #0b1632;
+$gray-background: #f4f4f4;
+$order-background: #fbfbfb;
+$white-title: #c8d8ff;
+$white: #ffffff;
+$blue: #2358db;
+$background-blue: $color-primary;
+
+$test: red solid 1px;
+$test1: green solid 1px;
+
+$color-canecl: #fb0041;
+$color-ok: #2358db;
+
+$color-canecl: #fb0041;
+$color-tkzs: #2358db;
+$color-bzas: #7803b6;
+$color-srn: #be71e8;
+$color-drisha: #e4c8f5;
+
+$header-height: 60px;
+$drawer-width: 230px;
+// $all-screen: 500px;
+$all-screen: calc(100vh - #{$header-height});
+$success-snackbar: #9beead;
+$error-snackbar: #ee9b9b;
+$default-snackbar: #bae6ec;
+$warrning-snackbar: #eece9b;
+
+// order screen
+$back-height: 54px;
+$padding-up: 23px;
+$top-height: 170px;
+$nav-height: 48px;
+$action-height: 90px;
+
+$mobile-top-height: 168px;
+$mobile-action-height: 70px;
+$mobile-wrapper-height: 100vh;
+$mobile-details-height: calc(100vh - #{$mobile-top-height} - #{$back-height});
+$mobile-router-height: calc(#{$mobile-details-height} - #{$nav-height} - #{$mobile-action-height});
+$order-router-height: calc(#{$all-screen} - #{$padding-up} - #{$top-height} - #{$action-height} - #{$nav-height});
+// order screen
+
+/* Using SCSS variables to store breakpoints */
+
+@media (max-width: $bpoint-tablet) {
+}
+/* Using SCSS variables to store breakpoints */
+
+@media screen and (max-width: $bpoint-tablet-landscape) {
+    $header-height: 52px;
+    $all-screen: calc(100vh - #{$header-height});
+}
+@media (max-width: $bpoint-mobil) {
+    $header-height: 52px;
+    $all-screen: calc(100vh - #{$header-height});
+}

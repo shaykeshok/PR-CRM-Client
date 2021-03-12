@@ -1,0 +1,123 @@
+<ng-container [ngSwitch]="config.type">
+
+    <ng-container *ngSwitchCase="'button-group'">
+
+        <!-- #region SELECT -->
+        <div class="btn-title">
+            {{config.label}}
+        </div>
+        <div class="btn-body">
+
+            <button [class.active]="control.value===b.value" class="btn-group" mat-button *ngFor="let b of config.list"
+                (click)="$event.preventDefault();btnClick(b.value)">
+                {{b.label}}
+            </button>
+            <button [class.active]="control.value===b.value" class="btn-group" mat-button
+                *ngFor="let b of config.asyncList|async" (click)="$event.preventDefault();btnClick(b.value)">
+                {{b.label}}
+            </button>
+        </div>
+        <!-- #endregion -->
+
+
+
+    </ng-container>
+    <ng-container *ngSwitchCase="'select'">
+
+        <!-- #region SELECT -->
+        <mat-form-field [appearance]=" config.appearance">
+
+            <mat-label>{{config.label}}</mat-label>
+
+            <mat-select [formControl]="control" [placeholder]="config.placeholder">
+                <mat-option *ngFor="let item of config?.list" [value]="item.value">
+                    {{item.label}}
+                </mat-option>
+                <mat-option *ngFor="let item of config?.asyncList|async" [value]="item.value">
+                    {{item.label }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="control.touched && !control.hasError('required')">
+                {{error.error}}
+
+            </mat-error>
+
+        </mat-form-field>
+        <!-- #endregion -->
+
+
+
+    </ng-container>
+    <ng-container *ngSwitchCase="'autocomplete'">
+
+        <!-- #region SELECT -->
+        <mat-form-field [appearance]=" config.appearance">
+
+            <mat-label>{{config.label}}</mat-label>
+
+            <input type="text" matInput [placeholder]="config.placeholder" [formControl]="autoCompleteControl"
+                [matAutocomplete]="autoComp" (blur)="onBlurAutoComplete(autoCompleteControl.value)">
+            <mat-autocomplete #autoComp="matAutocomplete">
+
+                <mat-option *ngIf="isLoading" class="is-loading">
+                    <mat-spinner diameter="30"></mat-spinner>
+                </mat-option>
+
+                <ng-container *ngIf="!isLoading">
+
+                    <mat-option *ngFor="let item of listFromServer" [value]="item.label"
+                        (click)="autoCompleteClick(item.value)">
+                        {{item.label}}
+                    </mat-option>
+                    <mat-option *ngIf="noResults">
+                        {{label.noResults}}
+                    </mat-option>
+                </ng-container>
+            </mat-autocomplete>
+            <mat-error *ngIf="control.touched && !control.hasError('required')">
+                {{error.error}}
+
+            </mat-error>
+
+        </mat-form-field>
+        <!-- #endregion -->
+
+
+
+    </ng-container>
+
+    <ng-container *ngSwitchDefault>
+
+
+
+
+        <mat-form-field [appearance]=" config.appearance">
+            <mat-label>{{config.label}}</mat-label>
+            <input [required]="required" [type]="config.type" [name]="config.name" [formControl]="control" matInput
+                [placeholder]="config.placeholder" [autocomplete]="config.autocomplete">
+
+            <mat-hint>{{config.hint}}</mat-hint>
+            <mat-error *ngIf="control.touched && control.hasError('required')">
+                {{config.label}} {{label.is}} <strong>{{label.required}}</strong>
+            </mat-error>
+            <mat-error *ngIf="control.hasError('pattern') &&config.type === 'email' && !control.hasError('required')">
+                {{error.email}}
+            </mat-error>
+            <mat-error *ngIf="control.hasError('pattern') && config.type !== 'email' && !control.hasError('required')">
+                {{config.error ? config.error : error.name}}
+            </mat-error>
+            <mat-error *ngIf="control.touched && control.hasError('customError')">
+                {{error.error}}
+            </mat-error>
+            <mat-error *ngIf="control.touched && !control.hasError('required') && control.hasError('validTz')">
+                {{error.tz}}
+            </mat-error>
+            <mat-error *ngIf="control.touched && control.hasError('minlength')">
+                {{error.minLength + Errors['minlength'].requiredLength}}
+            </mat-error>
+        </mat-form-field>
+
+
+    </ng-container>
+
+</ng-container>

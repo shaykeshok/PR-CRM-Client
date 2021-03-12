@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1600"
+   height="413"
+   viewBox="0 0 1600 413"
+   version="1.1"
+   id="svg29"
+   sodipodi:docname="background_loginX1600.svg"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+  <metadata
+     id="metadata33">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>727505B8-6CAA-424A-B536-87F2059C814F</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview31"
+     showgrid="false"
+     inkscape:zoom="0.24513889"
+     inkscape:cx="-263.11614"
+     inkscape:cy="206.5"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg29" />
+  <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+  <title
+     id="title2">727505B8-6CAA-424A-B536-87F2059C814F</title>
+  <desc
+     id="desc4">Created with sketchtool.</desc>
+  <defs
+     id="defs19">
+    <linearGradient
+       x1="0"
+       y1="300.55252"
+       x2="826.17188"
+       y2="275.39062"
+       id="linearGradient-1"
+       gradientTransform="scale(1.556336,0.57373048)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#5083FF"
+         offset="0%"
+         id="stop6" />
+      <stop
+         stop-color="#0035BE"
+         offset="100%"
+         id="stop8" />
+    </linearGradient>
+    <polygon
+       id="path-2"
+       points="1440,245 0,395 0,-79 1440,-79 " />
+    <filter
+       x="-0.016000001"
+       y="-0.039999999"
+       width="1.0319999"
+       height="1.097"
+       filterUnits="objectBoundingBox"
+       id="filter-3">
+      <feOffset
+         dx="0"
+         dy="4"
+         in="SourceAlpha"
+         result="shadowOffsetOuter1"
+         id="feOffset12" />
+      <feGaussianBlur
+         stdDeviation="7"
+         in="shadowOffsetOuter1"
+         result="shadowBlurOuter1"
+         id="feGaussianBlur14" />
+      <feColorMatrix
+         values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.139351223 0"
+         type="matrix"
+         in="shadowBlurOuter1"
+         id="feColorMatrix16" />
+    </filter>
+  </defs>
+  <g
+     id="לוגין"
+     style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:0.94494307"
+     transform="scale(1.1199244,1)">
+    <g
+       id="רקע-כחול-חלק-עליון"
+       style="stroke-width:0.94494307">
+      <g
+         id="g25"
+         style="stroke-width:0.94494307">
+        <use
+           xlink:href="#path-2"
+           id="use21"
+           style="fill:#000000;fill-opacity:1;stroke-width:0.94494307;filter:url(#filter-3)"
+           x="0"
+           y="0"
+           width="100%"
+           height="100%" />
+        <use
+           xlink:href="#path-2"
+           id="use23"
+           style="fill:url(#linearGradient-1);fill-rule:evenodd;stroke-width:0.94494307"
+           x="0"
+           y="0"
+           width="100%"
+           height="100%" />
+      </g>
+    </g>
+  </g>
+</svg>

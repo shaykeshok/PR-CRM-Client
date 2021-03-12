@@ -1,0 +1,138 @@
+@import "./../../../assets/styles/media.scss";
+.wrapper {
+  height: 100%;
+  background-image: url(~/../../../../assets/images/svg/background_login.svg);
+  background-repeat: no-repeat;
+  background-color: $gray-background;
+  background-size: 100% auto; /* Fill width, retain proportions */
+  display: grid;
+  place-content: center;
+  row-gap: 15px;
+  .suitcase {
+    img {
+      margin: auto;
+      max-height: 107px;
+    }
+    span {
+      font-family: Heebo;
+      font-size: 22px;
+      //   font-weight: normal;
+      //   font-stretch: normal;
+      //   font-style: normal;
+      //   line-height: normal;
+      letter-spacing: 0.62px;
+      text-align: center;
+      color: $white-title;
+    }
+  }
+  .top-title {
+    .title {
+      width: 180px;
+      height: 44px;
+      font-family: Heebo;
+      font-size: 30px;
+      text-align: center;
+      color: #ffffff;
+    }
+    display: none;
+  }
+  mat-card {
+    place-content: center;
+    height: 50vh;
+    width: 60vw;
+    max-width: 620px;
+
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    .title {
+      width: 249px;
+      height: 63px;
+      font-family: Heebo;
+      font-size: 43px;
+      font-weight: 300;
+
+      text-align: center;
+      color: $blue;
+    }
+    form {
+      display: grid;
+      place-content: space-evenly stretch;
+      width: 100%;
+      padding: 0;
+    }
+
+    margin: auto;
+    epr-input {
+      width: 100%;
+    }
+  }
+  .action {
+    display: grid;
+    place-content: center;
+  }
+}
+.logo {
+  img {
+    margin: auto;
+    height: 60px;
+    width: auto;
+  }
+}
+
+@media (max-width: $bpoint-pc) {
+  .wrapper {
+    background-image: url(~/../../../../assets/images/svg/background_loginX1600.svg);
+  }
+}
+@media (max-width: 1400px) {
+  .wrapper {
+    background-image: url(~/../../../../assets/images/svg/background_loginX1400.svg);
+  }
+}
+@media (max-width: $bpoint-tablet) {
+  .wrapper {
+    background-image: url(~/../../../../assets/images/svg/background_loginX768.svg);
+    background-size: 100% auto; /* Fill width, retain proportions */
+    .top-title {
+      display: grid;
+    }
+    .suitcase {
+      display: none;
+    }
+    mat-card {
+      width: 80vw;
+
+      grid-template-rows: 2fr 1fr;
+
+      .title {
+        display: none;
+      }
+    }
+  }
+}
+
+/* Using SCSS variables to store breakpoints */
+
+@media (max-width: $bpoint-mobil) {
+  .wrapper {
+    background-image: url(~/../../../../assets/images/svg/background_loginX375.svg);
+
+    mat-card {
+      height: 344px;
+      margin: auto;
+
+      grid-template-rows: 3fr 1fr;
+
+      padding: 0;
+      form {
+        height: 100%;
+        margin: auto;
+        .action,
+        .form-control {
+          max-width: 90%;
+          margin: auto;
+        }
+      }
+    }
+  }
+}

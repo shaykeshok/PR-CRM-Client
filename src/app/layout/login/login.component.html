@@ -1,0 +1,33 @@
+<div class="wrapper">
+    <!-- <div class="suitcase center">
+        <img src="../../../assets/images/png/crm2.png" alt="suitcase">
+        <span>{{title.title}}</span>
+    </div> -->
+    <div class="top-title center">
+        <span class="title">{{title.welcome}}</span>
+    </div>
+    <mat-card>
+
+        <span class="title">{{title.welcome}}</span>
+        <form #form [formGroup]="rForm" (ngSubmit)="save(rForm.value)">
+            <div class="form-control" *ngFor="let config of inputs">
+
+                <epr-input [formControlName]="config.formControl" [config]="config">
+                </epr-input>
+            </div>
+
+
+            <btn-submit [label]="btn.submit"></btn-submit>
+
+        </form>
+        <div class="action center">
+            <button class="link" mat-button>{{btn.forgot}}</button>
+        </div>
+
+
+    </mat-card>
+
+    <div class="logo center">
+        <img src="../../../assets/images/png/logo.png" alt="EPR" [title]="version">
+    </div>
+</div>

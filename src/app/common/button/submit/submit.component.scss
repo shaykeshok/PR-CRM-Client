@@ -1,0 +1,27 @@
+@import "./../../../../assets/styles/media.scss";
+:host {
+  display: grid;
+  place-content: center;
+  button {
+    max-width: 80%;
+    margin: auto;
+    height: 28px;
+    width: 57px;
+    border: 1px solid $blue;
+    box-sizing: border-box;
+    border-radius: 100px;
+    span {
+      width: 56px;
+      height: 32px;
+      font-family: Heebo;
+      font-size: 22px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: right;
+      color: $blue;
+    }
+  }
+}
