@@ -1,0 +1,21 @@
+.container{
+    display: flex;
+    background-color: #282928;
+    justify-content: space-between;
+}
+.logo{
+    max-width: 30px;
+    padding: 5px 0 5px 10px;
+}
+.company-name{
+    color: white;
+    padding-left: 10px;
+}
+
+.flex{
+    display: flex;
+}
+.left-side,.right-side{
+    display: flex;
+    align-items: center;
+}
