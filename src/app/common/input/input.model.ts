@@ -6,7 +6,7 @@ export interface IListItem {
     icon?: string;
 }
 export interface IInputConfig {
-    type: 'text' | 'select' | 'password' | 'email' | 'number' | 'button-group' | 'autocomplete';
+    type: 'text' | 'select' | 'password' | 'email' | 'number' | 'button-group' | 'autocomplete' | 'tel';
     label?: string;
     formControl: string;
     name?: string;
@@ -20,6 +20,7 @@ export interface IInputConfig {
     list?: IListItem[];
     asyncList?: Observable<IListItem[]>;
     appearance: 'legacy' | 'outline' | 'standard' | 'none' | 'fill';
+    pattern?: string;
 
 }
 

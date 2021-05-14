@@ -12,8 +12,8 @@
         <form #form [formGroup]="rForm" (ngSubmit)="save(rForm.value)">
             <div class="form-control" *ngFor="let config of inputs">
 
-                <epr-input [formControlName]="config.formControl" [config]="config">
-                </epr-input>
+                <PR-input [formControlName]="config.formControl" [config]="config">
+                </PR-input>
             </div>
 
 

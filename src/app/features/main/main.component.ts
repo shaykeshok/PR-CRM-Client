@@ -11,15 +11,14 @@ import { AppService } from 'src/app/service/app.service';
 export class MainComponent implements OnInit {
 
   mobileQuery: MediaQueryList;
-  constructor(    
+  constructor(
     public app: AppService,
     media: MediaMatcher,
 
-    ) {
-      this.mobileQuery = media.matchMedia(Constans.IPAD_WIDTH_LANDSCAPE);
+  ) {
+    this.mobileQuery = media.matchMedia(Constans.IPAD_WIDTH_LANDSCAPE);
 
-     }
-  
+  }
   public get showNav() {
     return this.app.showNav || !this.mobileQuery.matches;
   }
@@ -28,5 +27,5 @@ export class MainComponent implements OnInit {
   }
 
 
-  close(){}
+  close() { }
 }

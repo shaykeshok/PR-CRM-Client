@@ -9,13 +9,13 @@ import { RouterModule } from '@angular/router';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-
+import { ReportsModule } from './reports/reports.module';
 
 @NgModule({
   declarations: [
     MainComponent,
     HeaderComponent,
-    SideBarComponent
+    SideBarComponent,
   ],
   imports: [
     CommonModule,
@@ -25,6 +25,7 @@ import { MatListModule } from '@angular/material/list';
     RouterModule,
     MatSidenavModule,
     MatListModule,
+    ReportsModule,
 
   ]
 })

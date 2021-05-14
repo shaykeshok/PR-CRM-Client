@@ -1,0 +1,23 @@
+<div class="warpper">
+    <div class="details">
+        <div class="name">
+            {{event.name}}
+        </div>
+        <div class="publishDate">
+            {{event.publishDate}}
+        </div>
+
+        <div *ngFor="let act of actions" class="action">
+            <div class="actionNumber">
+                {{count[act]}}
+            </div>
+            <div class="actionPercentage">
+                {{count[act]}}%
+            </div>
+            <div class="actionName">
+                <label>{{title[act]}}</label>
+            </div>
+        </div>
+
+    </div>
+</div>

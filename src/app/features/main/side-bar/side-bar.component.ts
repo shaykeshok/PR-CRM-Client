@@ -40,9 +40,9 @@ export class SideBarComponent implements OnInit {
       action: 'reports',
       icon: 'reports.png'
     }, {
-      label: 'Data',
-      action: 'data',
-      icon: 'database.svg'
+      label: 'Customers',
+      action: 'customers',
+      icon: 'customer.png'
     }
   ];
 
@@ -54,9 +54,5 @@ export class SideBarComponent implements OnInit {
   ngOnInit() {
   }
 
-
-  onActionClick(action){
-
-  }
   signout(){}
 }
