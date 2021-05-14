@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { NGXLogger } from 'ngx-logger';
 
 @Component({
-  selector: 'epr-input',
+  selector: 'PR-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
   providers: [
@@ -27,16 +27,16 @@ export class InputComponent extends BaseComponent implements OnInit, ControlValu
   control = new FormControl();
   listFromServer: IListItem[] = [];
   label = {
-    is: 'הוא',
-    required: 'חובה',
-    noResults: 'אין תוצאות'
+    is: 'is',
+    required: 'required',
+    noResults: 'no results'
   };
   error = {
-    email: 'יש להכניס כתובת מייל תקינה',
-    name: 'יש להכניס תווים חוקיים בלבד',
+    email: 'A valid email address must be entered',
+    name: 'Only valid characters should be entered',
     error: '',
-    tz: 'תעודת זהות לא חוקית',
-    minLength: 'מינימום תווים '
+    tz: 'Invalid ID',
+    minLength: 'Minimum characters '
 
   };
   required = false;
@@ -59,13 +59,13 @@ export class InputComponent extends BaseComponent implements OnInit, ControlValu
   constructor(private http: HttpClient) {
     super('input');
   }
-  setControle() {
+  setControl() {
     const _validators = this.config.validators || [];
     this.required = _validators.indexOf(Validators.required) > -1;
     this.control.setValidators(_validators);
   }
   ngOnInit() {
-    this.setControle();
+    this.setControl();
     switch (this.config.type) {
       case 'autocomplete':
         this.registerAutoCompleteChange();

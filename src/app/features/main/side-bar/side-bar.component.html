@@ -1,12 +1,14 @@
 <div class="desktop">
-    <ng-template #header>
-        <!-- <img src="assets/icons/crm.png" alt=""> -->
-    </ng-template>
+    <!-- <ng-template #header>
+    </ng-template> -->
+    <!-- <div >
+        <img src="assets/icons/crm.png" alt="" class="crm-icon">
+    </div> -->
     <div class="nav-section">
         <mat-action-list *ngFor="let nav of navs">
             <!-- <div class="title">{{nav.label}}</div> -->
 
-            <button mat-list-item (click)="onActionClick(nav.action)">
+            <button mat-list-item [routerLink]="nav.action">
                 <div class="btn-nav">
 
                     <img [src]="iconPath + nav.icon" alt="" srcset="">

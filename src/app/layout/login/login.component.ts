@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormService } from './form.service';
+import { FormService } from './formLogin.service';
 import { AppService } from '../../service/app.service';
 import { IUserResponse } from '../../common/user.model';
 import { Constans } from '../../common/common.model';
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     console.log(form);
     console.log('login');
     if (this.rForm.valid) {
-      this.app.loaderOn('מתחבר...');
+      this.app.loaderOn('Login...');
       this.app.post('user', form).subscribe((res: IUserResponse) => {
         const { rc, body, title } = res;
         debugger

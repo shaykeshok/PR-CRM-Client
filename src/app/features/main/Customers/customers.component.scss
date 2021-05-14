@@ -1,0 +1,13 @@
+.warpper{
+    display: flex;
+    justify-content: space-around;
+}
+
+.header{
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(151,173,198,1) 0%, rgba(97,122,200,1) 56%, rgba(162,199,200,1) 87%, rgba(255,255,255,1) 95%);
+    height: 60px;
+    padding-left: 1%;
+    font-size: 40px;
+    font-family: system-ui;
+}

@@ -1,0 +1,10 @@
+<div [class]="class">
+
+    <label for="select">{{label}}</label>
+    <select #select [formControl]="control">
+        <option *ngIf="none" [value]="choose">{{clear}}</option>
+
+        <option *ngFor="let op of options" [value]="op.key">{{op.label}}</option>
+
+    </select>
+</div>

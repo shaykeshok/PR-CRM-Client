@@ -1,0 +1,4 @@
+<div class="top">
+    <PR-select [label]="'Filter: '"></PR-select>
+</div>
+<app-event-status *ngFor="let op of events" [event]="op"></app-event-status>

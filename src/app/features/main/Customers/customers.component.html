@@ -1,0 +1,12 @@
+<!-- <app-view-header [headerName]="'Customers'"></app-view-header> -->
+<div class="header">
+    CUSTOMERS
+</div>
+<div class="warpper">
+    <div class="customers-list">
+        <app-customers-list></app-customers-list>
+    </div>
+    <div class="customer-Details">
+        <app-customer-details *ngIf="_currentCustomer"></app-customer-details>
+    </div>
+</div>

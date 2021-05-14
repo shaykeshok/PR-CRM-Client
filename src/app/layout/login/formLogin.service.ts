@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { IInputConfig } from './../../common/input/input.model';
-import { EprValidator } from './../../common/public-api';
+import { IInputConfig } from '../../common/input/input.model';
+import { EprValidator } from '../../common/public-api';
 
 @Injectable({
   providedIn: 'root'

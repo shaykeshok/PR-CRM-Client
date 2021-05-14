@@ -1,0 +1,15 @@
+.formWarpper{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap:30px;
+
+}
+
+.warpper{
+    margin: 5vh;
+}
+
+.btnSubmit{
+    grid-column: 1 / span 2;
+    grid-row: 4 / 5;
+}

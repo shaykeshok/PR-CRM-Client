@@ -11,13 +11,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InputModule } from './common/input/input.module';
 import { ButtonModule } from './common/button/button.module';
 import { MainModule } from './features/main/main.module';
+import { SelectModule } from './common/select/select.module';
+import { ReportsModule } from './features/main/reports/reports.module';
+import { CustomersModule } from './features/main/Customers/customers.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DialogComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,10 @@ import { MainModule } from './features/main/main.module';
     ReactiveFormsModule,
     InputModule,
     ButtonModule,
-    MainModule
+    MainModule,
+    SelectModule,
+    ReportsModule,
+    CustomersModule
   ],
   providers: [],
   bootstrap: [AppComponent]
