@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
@@ -14,12 +15,9 @@ const ERROR_TITLE = '😯אוי ואבוי';
   providedIn: 'root'
 })
 export class AppService {
-  
-  
-  public showNav = false;
 
-  
-  
+
+  public showNav = false;
   version = 'version 1.0.0';
 
   public get Token(): string {
@@ -27,13 +25,23 @@ export class AppService {
     // return this._userService.Token;
   }
 
-  constructor( 
+  constructor(
     private http: HttpClient,
     public dialog: MatDialog,
     private router: Router,
+    private _snackBar: MatSnackBar
 
-    ) { }
+  ) { }
+  /**
+   * get anything
+   */
+  public get(url: string): Observable<any> {
+    return this.http.get(API + url);
 
+  }
+  /**
+   * post anything
+   */
   post(url: string, body?: any): Observable<any> {
     return this.http.post(API + url, body);
   }
@@ -71,5 +79,13 @@ export class AppService {
     // this.logger.error(error, this.Email);
     this.loaderOff();
     return this.openDialog(dialog);
+  }
+
+  openSnanckBar(message: string, horizontalPosition: MatSnackBarHorizontalPosition, verticalPosition: MatSnackBarVerticalPosition, duration?: number, action?: string) {
+    this._snackBar.open(message, (action !== '' ? action : null), {
+      horizontalPosition: horizontalPosition,
+      verticalPosition: verticalPosition,
+      duration: duration ? duration : 5000
+    });
   }
 }
