@@ -18,9 +18,6 @@ export class AppService {
 
 
   public showNav = false;
-
-
-
   version = 'version 1.0.0';
 
   public get Token(): string {
@@ -36,8 +33,8 @@ export class AppService {
 
   ) { }
   /**
-    * get anything
-    */
+   * get anything
+   */
   public get(url: string): Observable<any> {
     return this.http.get(API + url);
 
