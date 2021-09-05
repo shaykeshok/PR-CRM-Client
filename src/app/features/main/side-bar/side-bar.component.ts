@@ -32,8 +32,8 @@ export class SideBarComponent implements OnInit {
       action: 'dashboard',
       icon: 'dashboard.png'
     }, {
-      label: 'Templates',
-      action: 'templates',
+      label: 'Activities',
+      action: 'activities',
       icon: 'templates.png'
     }, {
       label: 'Reports',

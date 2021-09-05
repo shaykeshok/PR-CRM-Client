@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { InputComponent } from 'src/app/common/input/input.component';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { CustomerService } from '../customer.service';
 
 @Component({
@@ -9,33 +8,46 @@ import { CustomerService } from '../customer.service';
   styleUrls: ['./customer-details.component.scss']
 })
 export class CustomerDetailsComponent implements OnInit {
-  edit: boolean = false;
+  edit = false;
   rForm = this.customerService.getForm();
   btn = {
     edit: 'Edit Customer',
-    save: 'Save'
+    save: 'Save',
+    cancel: 'Cancel'
   };
+
+  @Input() modalComponent = true;
   public get inputs() {
     return this.customerService.inputs;
   }
 
 
-  constructor(private customerService: CustomerService) { }
-  currentCustomer = this.customerService.currentCustomer$.subscribe(res => {
-    this.rForm.patchValue({...res});
-  }
-  );
+  constructor(
+    private customerService: CustomerService,
+    public dialogRef: MatDialogRef<CustomerDetailsComponent>) { }
+
+
+
 
   ngOnInit() {
+    if (!this.modalComponent) {
+
+      this.customerService.currentCustomer$.subscribe(res => {
+        this.rForm.patchValue({ ...res });
+        console.log(res);
+      });
+    }
   }
 
   save() {
-    // console.log('Valid?', form.valid); // true or false
-    // console.log('Name', form.value.name);
-    // console.log('Email', form.value.email);
-    // console.log('Message', form.value.message);
-    // console.log('input', this.input);
-    
+    this.customerService.UpdateCustomer(this.customerService.currentCustomer, this.rForm);
+  }
+
+  addNewCustomer() {
+
+  }
+  cancel() {
+    this.dialogRef.close();
   }
 
 }

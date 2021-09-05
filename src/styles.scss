@@ -7,3 +7,37 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     display: grid;
     place-content: center;
   }
+
+  mat-dialog-container {
+    background-color: whitesmoke !important;
+    background: whitesmoke !important;
+    margin: auto !important;
+  }
+  .height-100 {
+    height: 100% !important;
+  }
+
+  .width-100 {
+    width: 100% !important;
+  }
+  
+  .width-50 {
+    width: 50% !important;
+  }
+
+  .d-flex{
+    display: flex;
+  }
+
+  .align-items-baseline{
+    align-items: baseline;
+  }
+
+  .align-items-center{
+    align-items:center;
+  }
+  .justify-content-between{
+    justify-content: space-between;
+  }
+
+  

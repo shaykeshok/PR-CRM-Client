@@ -7,6 +7,6 @@
         <app-customers-list></app-customers-list>
     </div>
     <div class="customer-Details">
-        <app-customer-details *ngIf="_currentCustomer"></app-customer-details>
+        <app-customer-details *ngIf="_currentCustomer" [modalComponent]="false"></app-customer-details>
     </div>
 </div>

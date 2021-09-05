@@ -1,11 +1,25 @@
+import { MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from "@angular/material/snack-bar";
 
 export class Url {
     static login = 'user/login';
     static reconnect = 'user';
-    static order = 'order';
+    static customer = 'JBI';
     static data = 'data';
     static report = 'report';
     static invoice = 'invoice';
+
+}
+
+export class VerticalPosition {
+    static bottom: MatSnackBarVerticalPosition = 'bottom';
+    static top: MatSnackBarVerticalPosition = 'top';
+}
+export class HorizontalPosition {
+    static start: MatSnackBarHorizontalPosition = 'start';
+    static center: MatSnackBarHorizontalPosition = 'center';
+    static end: MatSnackBarHorizontalPosition = 'end';
+    static left: MatSnackBarHorizontalPosition = 'left';
+    static right: MatSnackBarHorizontalPosition = 'right';
 
 }
 export class Constans {
@@ -38,7 +52,17 @@ export class OrderStatusActions {
 
 }
 export const IMGPATH = 'assets/Images/';
+export interface Ilist {
+    key: number;
+    value: string;
+}
 
+export interface Irole {
+    key: number;
+    value: string;
+}
+
+export const Roles: Irole[] = [{ key: 1, value: 'Reporter' }, { key: 2, value: 'news reporter' }]
 
 
 export function generateUrlParams(params: any, names: string[]): string {

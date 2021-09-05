@@ -1,0 +1,164 @@
+<mat-sidenav-container autosize class="catalog">
+  <mat-sidenav class="height-100" mode="over" opened="false" #sidenav position="end" [fixedInViewport]="true"
+    [fixedBottomGap]="0" style="width:70vw">
+    <div>
+      <div class="d-flex">
+        <div style="flex:1">
+          <button mat-stroked-button style="margin: 1em;" (click)="addTextBox()">Add TextBox</button>
+          <div *ngFor="let item of textBoxList;">
+            <app-text-box [properties]="item" (updateTextBox)="updateTextBox($event)"
+              (deleteTextBox)="removeTextBox($event)"></app-text-box>
+          </div>
+        </div>
+        <div style="flex:1">
+          <div class="title-cat">Settings</div>
+          <form [formGroup]="settings">
+            <mat-form-field appearance="outline">
+              <mat-label>Activity Title</mat-label>
+              <input matInput type="text" placeholder="Activity Title" formControlName="ActivityTitle">
+            </mat-form-field>
+            <div>
+              <mat-slide-toggle>Slide me!</mat-slide-toggle>
+            </div>
+            <div>
+              <mat-slide-toggle>Slide me!</mat-slide-toggle>
+            </div>
+            <div>
+              <mat-slide-toggle>Slide me!</mat-slide-toggle>
+            </div>
+            <div>
+              <mat-slide-toggle>Slide me!</mat-slide-toggle>
+            </div>
+          </form>
+        
+          <mat-card class="width-50" style="margin-top: 10%;margin: auto;">
+            <mat-list role="list">
+              <div class="d-flex justify-content-between">
+                <div mat-subheader>JBI List</div>
+                <div><button mat-raised-button color="green" (click)="openPersonsList()">Edit List</button></div>
+              </div>
+              <ng-container *ngIf="PerosnList.length>0;else emptyList">
+
+                <mat-list-item *ngFor="let item of PerosnList" role="listitem">{{ item.FirstName}} {{item.LastName}}
+                </mat-list-item>
+              </ng-container>
+              <ng-template #emptyList>
+                <div>List is empty!</div>
+              </ng-template>
+            </mat-list>
+            <!-- </div> -->
+          </mat-card>
+        </div>
+      </div>
+    </div>
+
+  </mat-sidenav>
+  <div class="courses-cont">
+    <mat-toolbar>
+      <mat-toolbar-row class="row-title">
+        <!-- <span class="title-cat">CATALOG</span> -->
+        <div class="title">
+          <span class="sub-title-cat">ADMIN CENTER</span>
+          <span class="title-cat">ACTIVITIES</span>
+        </div>
+
+        <span class="spacer"></span>
+
+        <button mat-button class="training-btn-clear" (click)="addActivity()">
+          <mat-icon>add</mat-icon>
+          <span style="font-weight: 300"> |</span> &nbsp; ADD
+          ACTIVITY
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+
+    <div class="filters">
+      <form [formGroup]="filters" #filtersform style="flex:11">
+        <div class="d-flex" style="align-items: baseline;justify-content: space-between;">
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Category</mat-label>
+              <mat-select name="food" formControlName="catx">
+                <mat-option *ngFor="let food of foods" [value]="food.value">
+                  {{food.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="">
+            <mat-form-field appearance="outline">
+              <mat-label>From:</mat-label>
+              <input matInput type="date" placeholder="From:" (change)="dateChanged(true, $event)"
+                formControlName="fromDt">
+            </mat-form-field>
+          </div>
+          <div class="">
+            <mat-form-field appearance="outline">
+              <mat-label>To:</mat-label>
+              <input matInput type="date" placeholder="To:" (change)="dateChanged(false, $event)"
+                formControlName="toDt">
+            </mat-form-field>
+          </div>
+          <div class="">
+            <mat-form-field appearance="outline">
+              <mat-label>Free Text</mat-label>
+              <input matInput appearance="outline" type="text" placeholder="Free Text"
+                (change)="onFreeTextChanged($event)" formControlName="free">
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+      <div class="" style="flex:1">
+        <button mat-button class="training-btn-clear align-self-end" (click)="clearFilters()">Clear</button>
+      </div>
+    </div>
+
+    <div>
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+        </ng-container>
+
+        <!-- Description Column -->
+        <ng-container matColumnDef="desc">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+          <td mat-cell *matCellDef="let row"> {{row.desc}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+        </ng-container>
+
+        <!-- Color Column -->
+        <ng-container matColumnDef="pdf">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let element;let row">
+            <mat-icon class="clear-icon" (click)="$event.stopPropagation();">
+              vertical_align_bottom</mat-icon>
+          </td>
+        </ng-container>
+
+        <tr class="mat-row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr class="mat-row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter</td>
+        </tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+
+  </div>
+  <!-- </mat-sidenav-content>
+    </mat-sidenav-container>
+  </mat-sidenav-content> -->
+</mat-sidenav-container>

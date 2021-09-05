@@ -12,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'src/app/common/button/button.module';
 import { ViewHeaderModule } from '../../../common/view-header/view-header.module';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 
 
@@ -27,7 +29,16 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     ButtonModule,
     ViewHeaderModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule,
+    MatDialogModule 
+  ],
+  entryComponents: [CustomerDetailsComponent],
+  providers: [{
+    provide: MatDialogRef,
+    useValue: {}
+  }
+
   ]
 })
 export class CustomersModule { }

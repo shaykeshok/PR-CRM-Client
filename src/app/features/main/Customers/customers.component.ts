@@ -11,7 +11,7 @@ export class CustomersComponent implements OnInit {
   currentCustomer = this.customerService.currentCustomer$.subscribe(res => {
     console.log('current:');
     console.log(res);
-    this._currentCustomer = res.key;
+    this._currentCustomer = res.Moneln;
   }
   );
   constructor(private customerService: CustomerService) { }

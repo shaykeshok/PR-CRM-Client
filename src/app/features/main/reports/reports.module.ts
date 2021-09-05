@@ -4,8 +4,8 @@ import { ReportsComponent } from './reports.component';
 import { MatTableModule } from '@angular/material/table';
 import { InputModule } from 'src/app/common/input/input.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSortModule } from '@angular/material';
 
 
 @NgModule({

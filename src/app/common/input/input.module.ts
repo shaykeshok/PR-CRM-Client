@@ -13,7 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [InputComponent],
-  exports:[InputComponent],
+  exports: [InputComponent],
   imports: [
     CommonModule,
     MatInputModule,

@@ -10,6 +10,8 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { ReportsModule } from './reports/reports.module';
+import { TemplatesModule } from './templates/templates.module';
+import { ActivitiesModule } from './activities/activities.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { ReportsModule } from './reports/reports.module';
     MatSidenavModule,
     MatListModule,
     ReportsModule,
-
+    TemplatesModule,
+    ActivitiesModule
   ]
 })
 export class MainModule { }
