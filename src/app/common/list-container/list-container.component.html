@@ -1,0 +1,18 @@
+<div class="warpper">
+
+    <div *ngIf="withChangeOrder;then drogableList else staticList"></div>
+    <ng-template #drogableList>
+        <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of data" cdkDrag>
+                <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                {{item.firstName}} {{item.lastName}}
+            </div>
+        </div>
+    </ng-template>
+    <ng-template #staticList>
+        <div *ngFor="let item of data; let i=index">
+            {{item.firstName}} {{item.lastName}} <span><img src="../../../assets/icons/garbage.png"></span>
+        </div>
+    </ng-template>
+
+</div>

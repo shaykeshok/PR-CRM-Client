@@ -1,7 +1,7 @@
 export interface Customer {
-    key: number;
-    firstName: string;
-    lastName: string;
+    Moneln: number;
+    FirstName: string;
+    LastName: string;
     facebook: string;
     linkedin: string;
     cellPhone: string;

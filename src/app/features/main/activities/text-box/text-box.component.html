@@ -1,0 +1,38 @@
+<mat-card class="example-card">
+    <div class="d-flex">
+        <div>
+            <div style="height: 24px;width:26px">
+                <select style="width: 26px;background-color: #efefef;border-radius: 3px;height: 24px;padding-left: 3px;" #fontSize value="10px" (selectionChange)="triggerResize()">
+                    <option value="10px">10</option>
+                    <option value="12px">12</option>
+                    <option value="14px">14</option>
+                    <option value="16px">16</option>
+                    <option value="18px">18</option>
+                    <option value="20px">20</option>
+                </select>
+            </div>
+            <div><button type="button" (click)="bold()"><b>B</b></button></div>
+            <div> <input type="color" style="max-width: 20px;" [(value)]="this.elementDetails.color" (input)="colorChange($event)"></div>
+        </div>
+        <div>
+            <mat-card-content class="height-100 width-100">
+                <mat-form-field appearance="outline" class="height-100" style="width: 339px;" [style.fontSize]="fontSize.value">
+                    <textarea 
+                        matInput
+                        #textElement 
+                        autosize
+                        [ngClass]="this.elementDetails.bold? 'bold' : 'regular'" 
+                        [ngStyle]="{'color': this.elementDetails.color}" 
+                        style="height: 46px"
+                        (blur)="updateText($event)"
+                    >
+                   </textarea>
+                </mat-form-field>
+            </mat-card-content>
+        </div>
+        <div>
+            <button (click)="delete()"><b>X</b></button>
+        </div>
+    </div>
+
+</mat-card>

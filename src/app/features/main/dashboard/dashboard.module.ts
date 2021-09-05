@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { ChartsComponent } from './charts/charts.component';
-import { MatTableModule } from '@angular/material/table';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewsFeedsComponent } from './news-feeds/news-feeds.component';
@@ -16,10 +15,9 @@ import { SelectModule } from 'src/app/common/select/select.module';
   declarations: [DashboardComponent, ChartsComponent, NewsFeedsComponent, EventsStatusListComponent, EventStatusComponent],
   imports: [
     CommonModule,
-    MatTableModule,
     NgxChartsModule,
     BrowserAnimationsModule,
-    SelectModule
+    SelectModule,
   ]
 })
 export class DashboardModule { }

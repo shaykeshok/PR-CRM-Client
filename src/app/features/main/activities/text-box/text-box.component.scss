@@ -1,0 +1,21 @@
+.example-card {
+    max-width: 400px;
+  }
+  select {
+    /* for Firefox */
+    -moz-appearance: none;
+    /* for Chrome */
+    -webkit-appearance: none;
+  }
+  
+  /* For IE10 */
+  select::-ms-expand {
+    display: none;
+  }
+
+  .bold{
+    font-weight: bold;
+  }
+  .regular{
+    font-weight:300;
+  }

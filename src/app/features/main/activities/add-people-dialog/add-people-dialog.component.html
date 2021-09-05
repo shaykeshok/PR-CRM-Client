@@ -1,0 +1,138 @@
+<div class="main d-flex non-dialog-classes" style="position: relative">
+    <button autofocus style="height: 0.1px; width: 0.1px; position: absolute; top: -1000px"></button>
+    <div class="close-buttons" style="position: absolute; top: -20px; right: 17px; z-index: 999">
+        <button mat-icon-button matTooltip="Save Changes" class="mr-2" style="color: #29aae3" (click)="save()">
+            <mat-icon>done</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Discard Changes" (click)="close()">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </div>
+    <div class="d-flex flex-column">
+        <mat-card class="align-self-end p-top usersingroup"
+            [ngClass]="{ certificate: data && data.cert && !data.catalog }">
+            <span class="
+            selected-title
+            d-flex
+            justify-content-between
+            align-items-baseline
+          ">Selected Users
+                <button mat-icon-button (click)="removeAllUsers()" [disabled]="!selectedEmployees.length"
+                    matTooltip="Remove all selected staff">
+                    <mat-icon>clear</mat-icon>
+                </button>
+            </span>
+            <mat-list class="emp-list selectedlist">
+                <mat-list-item *ngFor="
+              let emp of selectedEmployees;
+              let i = index
+            ">
+                    <div class="d-flex width-100">
+                        <div style="width: 5%; flex: 0 0 5%" class="d-flex align-items-center mr-1">
+                            {{ i + 1 }}
+                        </div>
+                        <div class="d-flex align-items-center flex-grow-1">
+                            {{ emp.FirstName }} {{ emp.LastName }}
+                        </div>
+                        <div style="width: 5%; flex: 0 0 5%">
+                            <button mat-icon-button style="height: unset !important; line-height: unset !important"
+                                (click)="clickRemove(emp)">
+                                <mat-icon style="font-size: 16px">clear</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </mat-list-item>
+            </mat-list>
+        </mat-card>
+    </div>
+
+    <mat-card class="filters flex-grow-1">
+        <span class="add-title">Add Users</span>
+        <div class="d-flex align-items-center justify-content-between relevant" *ngIf="data?.linkType && data?.mone">
+            <div [ngStyle]="{ 'font-weight': relev.checked ? '500' : 'initial' }">
+                Relevant
+            </div>
+            <mat-slide-toggle #relev (change)="toggleRelevant($event)"></mat-slide-toggle>
+        </div>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input type="text"
+                   placeholder="Enter Name"
+                   aria-label="Name"
+                   matInput
+                   [matAutocomplete]="auto"
+                   (change)="search($event)"
+                   #searchInput>
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Role</mat-label>
+            <mat-select 
+                (selectionChange)="optionSelected($event, 'Role')" 
+                name="Role">
+              <mat-option *ngFor="let role of roles" [value]="role.key">
+                {{role.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+
+        <form #filtersx disabled="true">
+            <div class="text-left">
+                <button mat-button class="training-btn-clear" (click)="filtersx.reset(); clearFilters()">
+                    Clear Filters
+                </button>
+            </div>
+        </form>
+    </mat-card>
+
+    <mat-card class="d-flex flex-column searchb">
+        <mat-list class="emp-list searchbox flex-grow-1">
+
+            <ng-container>
+                <mat-list-item
+                  *ngFor="let customer of data$ | async : 'firstName'"
+                  (click)="clickAdd(customer)"
+                >
+                  <!--cdkDrag (cdkDropListDropped)="drop($event)"-->
+                  <div class="d-flex width-100">
+                    <div class="d-flex align-items-center">
+                        <button
+                          mat-icon-button
+                          style="height: unset !important; line-height: unset !important"
+                          *ngIf="!checkIfExists(customer)"
+                        >
+                          <mat-icon style="font-size: 16px">add</mat-icon>
+                        </button>
+                    </div>
+                    <div
+                      class="flex-grow-1 d-flex align-items-center"
+                      [ngClass]="{ 'blue-color': checkIfExists(customer) }"
+                    >
+                      {{ customer.FirstName }} {{ customer.LastName }}
+                    </div>
+
+                  </div>
+                </mat-list-item>
+              </ng-container>
+        
+
+            <ng-container *ngIf="data$ | async as results; else skeleton">
+                <ng-container *ngIf="!results.length" [ngTemplateOutlet]="noItems"></ng-container>
+            </ng-container>
+            <ng-template #skeleton>
+                <div class="skeleton-list" style="overflow: hidden"></div>
+            </ng-template>
+            <ng-template #noItems>No users found.</ng-template>
+        </mat-list>
+        <div class="text-left pl-3 mt-2">
+            <button mat-button class="training-btn-fill" (click)="addAll()">
+                Add All
+            </button>
+        </div>
+    </mat-card>
+</div>

@@ -1,20 +1,25 @@
 <div class="warpper">
-    <div style="margin-bottom: 25px;">
-        <button mat-raised-button (click)="edit=!edit">{{btn.edit}}</button>
-        <!-- <button mat-raised-button disabled style="margin-left: 5px;" *ngIf="!edit">{{btn.save}}</button> -->
-        <button mat-raised-button style="margin-left: 5px;" *ngIf="edit" (click)="save()">{{btn.save}}</button>
 
+    <h1 *ngIf="modalComponent">
+        ADD CUSTOMER
+    </h1>
+
+    <div style="margin-bottom: 25px;" *ngIf="!modalComponent">
+        <button mat-raised-button (click)="edit=!edit">{{btn.edit}}</button>
+        <button mat-raised-button style="margin-left: 5px;" *ngIf="edit" (click)="save()">{{btn.save}}</button>
     </div>
+
     <form #form [formGroup]="rForm" (ngSubmit)="save(rForm.value)" class="formWarpper">
         <div class="form-control" *ngFor="let config of inputs">
 
             <PR-input [formControlName]="config.formControl" [config]="config">
             </PR-input>
         </div>
-
-        <!-- <div class="btnSubmit">
-            <btn-submit [label]="'Save'"></btn-submit>
-        </div> -->
-
     </form>
+
+    <div *ngIf="modalComponent" style="float: right;">
+        <button mat-raised-button style="margin-left: 5px;" (click)="cancel()">{{btn.cancel}}</button>
+        <button mat-raised-button style="margin-left: 5px;" [mat-dialog-close]="rForm" (click)="addNewCustomer()">{{btn.save}}</button>
+    </div>
+
 </div>

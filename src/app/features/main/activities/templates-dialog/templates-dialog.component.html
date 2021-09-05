@@ -1,0 +1,29 @@
+<h2>Choose Template:</h2>
+<div class="example-container mat-elevation-z8">
+
+    <div class="example-table-container">
+
+        <table mat-table [dataSource]="data" class="example-table" matSort matSortActive="created" matSortDisableClear
+            matSortDirection="desc">
+            <ng-container matColumnDef="No">
+                <th mat-header-cell *matHeaderCellDef>#</th>
+                <td mat-cell *matCellDef="let row">{{row.TemplateId}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Issue">
+                <th mat-header-cell *matHeaderCellDef>Issue</th>
+                <td mat-cell *matCellDef="let row">{{row.Issue}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="chooseRow(row)" [mat-dialog-close]="1"></tr>
+        </table>
+    </div>
+
+</div>
+
+<div class="footer">
+    <div>
+        <span (click)="skip()">skip</span>
+    </div>
+</div>

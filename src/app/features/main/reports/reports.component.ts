@@ -52,6 +52,9 @@ export interface ReportData {
   desc: string;
 }
 
+
+
+
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',

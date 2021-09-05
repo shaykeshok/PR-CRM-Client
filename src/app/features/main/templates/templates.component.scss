@@ -1,0 +1,16 @@
+.warpper{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    .parameters{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+.mat-raised-button.mat-success {
+  color: #f0fff3;
+  background-color: #4fc26a;
+}
+
