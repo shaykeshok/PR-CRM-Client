@@ -3,16 +3,17 @@ import { CommonModule } from '@angular/common';
 import { ActivitiesComponent } from './activities.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatAutocompleteModule, MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatPaginatorModule, MatSelectModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule } from '@angular/material';
+import { MatAutocompleteModule, MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatPaginatorModule, MatSelectModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TemplatesDialogComponent } from './templates-dialog/templates-dialog.component';
 import { TextBoxComponent } from './text-box/text-box.component';
 import { AddPeopleDialogComponent } from './add-people-dialog/add-people-dialog.component';
+import { ListDialogComponent } from './list-dialog/list-dialog.component';
 
 
 
 @NgModule({
-  declarations: [ActivitiesComponent, TemplatesDialogComponent, TextBoxComponent, AddPeopleDialogComponent],
+  declarations: [ActivitiesComponent, TemplatesDialogComponent, TextBoxComponent, AddPeopleDialogComponent, ListDialogComponent],
   imports: [
     CommonModule,
     MatSidenavModule,
@@ -31,8 +32,10 @@ import { AddPeopleDialogComponent } from './add-people-dialog/add-people-dialog.
     MatButtonModule,
     MatAutocompleteModule,
     MatListModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCheckboxModule,
+    MatListModule
   ],
-  entryComponents: [TemplatesDialogComponent, AddPeopleDialogComponent],
+  entryComponents: [TemplatesDialogComponent, AddPeopleDialogComponent, ListDialogComponent],
 })
 export class ActivitiesModule { }

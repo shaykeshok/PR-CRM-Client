@@ -1,38 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSort } from '@angular/material/sort';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { Templates } from 'src/app/common/interfaces.interface';
+import { ActivityService } from 'src/app/service/activity.service';
 
-interface Templates {
-  TemplateId: number;
-  Issue: string;
-}
-const DATA: Templates[] = [{
-  TemplateId: 1,
-  Issue: 'Templates1',
-}, {
-  TemplateId: 2,
-  Issue: 'Templates2',
-}
-  , {
-  TemplateId: 3,
-  Issue: 'Templates3',
-}
-  , {
-  TemplateId: 4,
-  Issue: 'Templates4',
-}
-  , {
-  TemplateId: 5,
-  Issue: 'Templates5',
-}
-  , {
-  TemplateId: 6,
-  Issue: 'Templates6',
-}
-  , {
-  TemplateId: 7,
-  Issue: 'Templates7',
-}];
+
 
 @Component({
   selector: 'app-templates-dialog',
@@ -40,18 +12,21 @@ const DATA: Templates[] = [{
   styleUrls: ['./templates-dialog.component.scss']
 })
 export class TemplatesDialogComponent implements OnInit {
-  displayedColumns: string[] = ['No', 'Issue'];
-  data: Templates[] = DATA;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  Templates$: Observable<Templates[]>;
 
-  constructor(public dialogRef: MatDialogRef<TemplatesDialogComponent>,) { }
+
+  constructor(
+    public dialogRef: MatDialogRef<TemplatesDialogComponent>,
+    public activityService: ActivityService
+  ) { }
 
   ngOnInit() {
+    this.Templates$ = this.activityService.getTemplates();
   }
 
-  chooseRow(row) {
-    console.log(row);
-    this.dialogRef.close(row.TemplateId);
+  chooseRow(templateId: number) {
+    console.log(templateId);
+    this.dialogRef.close(templateId);
   }
 
   skip() {
