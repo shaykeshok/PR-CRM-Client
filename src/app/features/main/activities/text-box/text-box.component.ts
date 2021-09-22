@@ -41,18 +41,27 @@ export class TextBoxComponent implements OnInit {
     this.updateTextBox.emit(this.elementDetails);
   }
 
-  triggerResize() {
-    // Wait for changes to be applied, then trigger textarea resize.
-    this._ngZone.onStable.pipe(take(1))
-      .subscribe(() => {
-        this.elementDetails.fontSize = this.fontSize.nativeElement.value;
-        this.updateTextBox.emit(this.elementDetails);
-        this.autosize.resizeToFitContent(true);
+  // triggerResize() {
+  //   debugger
+  //   this.elementDetails.fontSize = this.fontSize.nativeElement.value;
+  //   this.updateTextBox.emit(this.elementDetails);
+  //   this.autosize.resizeToFitContent(true);
 
-      });
+  //   // // Wait for changes to be applied, then trigger textarea resize.
+  //   // this._ngZone.onStable.pipe(take(1))
+  //   //   .subscribe(() => {
+  //   //     this.elementDetails.fontSize = this.fontSize.nativeElement.value;
+  //   //     // this.updateTextBox.emit(this.elementDetails);
+  //   //     this.autosize.resizeToFitContent(true);
+
+  //   //   });
+  // }
+
+  resize(){
+    this.elementDetails.fontSize = this.fontSize.nativeElement.value;
+    this.updateTextBox.emit(this.elementDetails);
   }
   delete() {
-    debugger
     this.deleteTextBox.emit(this.elementDetails.boxId);
   }
   updateText(event) {

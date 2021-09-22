@@ -1,0 +1,7 @@
+<div class="d-flex align-items-center">
+    <mat-icon class="groups-icon" style="padding-right: 10px;">groups</mat-icon> <div style="font-weight: 600px ;">JBI List:</div>
+</div>
+<hr>
+<mat-list role="list">
+    <mat-list-item role="listitem" *ngFor="let jbi of JBIlist">{{jbi.FirstName}} {{jbi.LastName}}</mat-list-item>
+</mat-list>

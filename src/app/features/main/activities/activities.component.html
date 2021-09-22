@@ -1,54 +1,132 @@
 <mat-sidenav-container autosize class="catalog">
   <mat-sidenav class="height-100" mode="over" opened="false" #sidenav position="end" [fixedInViewport]="true"
-    [fixedBottomGap]="0" style="width:70vw">
-    <div>
-      <div class="d-flex">
-        <div style="flex:1">
-          <button mat-stroked-button style="margin: 1em;" (click)="addTextBox()">Add TextBox</button>
+    [fixedBottomGap]="0" style="width:50vw">
+    <div class="d-flex height-100">
+      <div style="flex:1">
+        <div class="row-title d-flex justify-content-around" style="background-color:#f2f6f9;height: 10%;">
+          <div class="title">
+            <span class="title-cat"><span style="font-weight: bold">ADD</span> ACTIVITY</span>
+          </div>
+          <div>
+            <button mat-stroked-button style="margin: 1em;" (click)="addTextBox()">Add TextBox</button>
+          </div>
+        </div>
+        <div>
+
           <div *ngFor="let item of textBoxList;">
             <app-text-box [properties]="item" (updateTextBox)="updateTextBox($event)"
               (deleteTextBox)="removeTextBox($event)"></app-text-box>
           </div>
         </div>
-        <div style="flex:1">
-          <div class="title-cat">Settings</div>
-          <form [formGroup]="settings">
-            <mat-form-field appearance="outline">
-              <mat-label>Activity Title</mat-label>
-              <input matInput type="text" placeholder="Activity Title" formControlName="ActivityTitle">
-            </mat-form-field>
-            <div>
-              <mat-slide-toggle>Slide me!</mat-slide-toggle>
-            </div>
-            <div>
-              <mat-slide-toggle>Slide me!</mat-slide-toggle>
-            </div>
-            <div>
-              <mat-slide-toggle>Slide me!</mat-slide-toggle>
-            </div>
-            <div>
-              <mat-slide-toggle>Slide me!</mat-slide-toggle>
-            </div>
-          </form>
-        
-          <mat-card class="width-50" style="margin-top: 10%;margin: auto;">
-            <mat-list role="list">
-              <div class="d-flex justify-content-between">
-                <div mat-subheader>JBI List</div>
-                <div><button mat-raised-button color="green" (click)="openPersonsList()">Edit List</button></div>
-              </div>
-              <ng-container *ngIf="PerosnList.length>0;else emptyList">
+      </div>
+      <div style="flex:1;background-color: #f7f7f7;">
 
-                <mat-list-item *ngFor="let item of PerosnList" role="listitem">{{ item.FirstName}} {{item.LastName}}
-                </mat-list-item>
-              </ng-container>
-              <ng-template #emptyList>
-                <div>List is empty!</div>
-              </ng-template>
-            </mat-list>
-            <!-- </div> -->
-          </mat-card>
+        <div class="row-title d-flex justify-content-between" style="background-color:#ebeff2;height: 10%;">
+          <div><button class="training-btn-fill px-4 green-btn" (click)="save()" mat-button>Save</button></div>
+          <div class="close-btn" (click)="close()">
+            <mat-icon>clear</mat-icon>
+          </div>
+
         </div>
+        <form [formGroup]="settings" class="container">
+          <mat-form-field appearance="outline" class="width-80 mt-4">
+            <mat-label>Activity Title</mat-label>
+            <input matInput type="text" placeholder="Activity Title" formControlName="ActivityTitle">
+          </mat-form-field>
+          <div>
+            <label class="mat-slide-toggle-content sliderToggleSecondLabel"
+              [ngStyle]="{'color':sendingType===1 ? '#bbb3b3' : 'black'}">Directly sending</label>
+            <mat-slide-toggle style="padding-left: 10px;" (change)="ChangeSendingType($event)"
+              [ngStyle]="{'color':sendingType===0 ? '#bbb3b3' : 'black'}" #sendingTypeId>Chain sending
+            </mat-slide-toggle>
+          </div>
+          <div *ngIf="sendingType===1">
+            <div>Send activity <input placeholder="__" class="times" formControlName='MessagesPerPerson'> <span
+                style="font-weight: bold;">times</span>
+              per
+              person and every <input placeholder="__" class="times" formControlName='PeriodBetweenSending'> <button
+                (click)="changeTime($event)"><span style="font-weight: bold;">minutes</span></button></div>
+            <div *ngIf="showButtons">Stop send activity after one of the JBI click on button:
+              <div class="d-flex">
+                <button (click)="stopButton(1)"
+                  [ngStyle]="{'background-color':(stopButton$|async) === 1 ? 'green' : null}">1</button>
+                <button (click)="stopButton(2)"
+                  [ngStyle]="{'background-color':(stopButton$|async) === 2 ? 'green' : null}">2</button>
+                <button (click)="stopButton(3)"
+                  [ngStyle]="{'background-color':(stopButton$|async) === 3 ? 'green' : null}">3</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <mat-slide-toggle formControlName="TrackEmails">Tracking the opening of the email</mat-slide-toggle>
+          </div>
+          <div>
+            <mat-slide-toggle (change)="addButtons($event)" #addButtonsId>Add Buttons</mat-slide-toggle>
+          </div>
+          <div *ngIf="showButtons">
+            <div class="mt-4">
+              <div>
+                <mat-form-field appearance="outline" class="width-50">
+                  <mat-label>Button 1</mat-label>
+                  <input matInput placeholder="Button 1" formControlName="Button1">
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="outline" class="width-50">
+                  <mat-label>Button 2</mat-label>
+                  <input matInput placeholder="Button 2" formControlName="Button2">
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="outline" class="width-50">
+                  <mat-label>Button 3</mat-label>
+                  <input matInput placeholder="Button 3" formControlName="Button3">
+                </mat-form-field>
+              </div>
+            </div>
+            <label style="color:red">*Only inputs with names will display</label>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-baseline">
+            <mat-checkbox class="example-margin" (change)="disabledCompany=!disabledCompany">For specific Company
+            </mat-checkbox>
+
+            <mat-form-field appearance="outline" class="width-50 mr-3">
+              <mat-label>Company</mat-label>
+              <mat-select name="food" [disabled]="disabledCompany" formControlName="Company">
+                <mat-option *ngFor="let comps of UserCompanies$|async" [value]="comps.key">
+                  {{comps.val}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-baseline">
+            <mat-checkbox class="example-margin" (change)="disabledPersonalReq($event)">Remove personal request?
+            </mat-checkbox>
+
+            <mat-form-field class="width-50 mr-3">
+              <input matInput formControlName="PersonalRequest" value="Dear">
+            </mat-form-field>
+          </div>
+        </form>
+
+        <mat-card class="width-50" style="margin-top: 10%;margin: auto;">
+          <mat-list role="list">
+            <div class="d-flex justify-content-between">
+              <div mat-subheader>JBI List</div>
+              <div><button mat-raised-button color="green" (click)="openPersonsList()">Edit List</button></div>
+            </div>
+            <ng-container *ngIf="!!PerosnList && PerosnList.length>0;else emptyList">
+
+              <mat-list-item *ngFor="let item of PerosnList" role="listitem">{{ item.FirstName}} {{item.LastName}}
+              </mat-list-item>
+            </ng-container>
+            <ng-template #emptyList>
+              <div>List is empty!</div>
+            </ng-template>
+          </mat-list>
+        </mat-card>
       </div>
     </div>
 
@@ -56,7 +134,6 @@
   <div class="courses-cont">
     <mat-toolbar>
       <mat-toolbar-row class="row-title">
-        <!-- <span class="title-cat">CATALOG</span> -->
         <div class="title">
           <span class="sub-title-cat">ADMIN CENTER</span>
           <span class="title-cat">ACTIVITIES</span>
@@ -78,8 +155,8 @@
         <div class="d-flex" style="align-items: baseline;justify-content: space-between;">
           <div>
             <mat-form-field appearance="outline">
-              <mat-label>Category</mat-label>
-              <mat-select name="food" formControlName="catx">
+              <mat-label>Company</mat-label>
+              <mat-select name="food" formControlName="catx" (selectionChange)="companyChanged($event.value)">
                 <mat-option *ngFor="let food of foods" [value]="food.value">
                   {{food.viewValue}}
                 </mat-option>
@@ -90,14 +167,14 @@
           <div class="">
             <mat-form-field appearance="outline">
               <mat-label>From:</mat-label>
-              <input matInput type="date" placeholder="From:" (change)="dateChanged(true, $event)"
+              <input matInput type="date" placeholder="From:" (change)="dateChanged(true, $event.target.value)"
                 formControlName="fromDt">
             </mat-form-field>
           </div>
           <div class="">
             <mat-form-field appearance="outline">
               <mat-label>To:</mat-label>
-              <input matInput type="date" placeholder="To:" (change)="dateChanged(false, $event)"
+              <input matInput type="date" placeholder="To:" (change)="dateChanged(false, $event.target.value)"
                 formControlName="toDt">
             </mat-form-field>
           </div>
@@ -108,40 +185,58 @@
                 (change)="onFreeTextChanged($event)" formControlName="free">
             </mat-form-field>
           </div>
+          <div>
+            <button mat-button class="training-btn-clear align-self-end" (click)="clearFilters()">Clear</button>
+          </div>
         </div>
       </form>
-      <div class="" style="flex:1">
-        <button mat-button class="training-btn-clear align-self-end" (click)="clearFilters()">Clear</button>
-      </div>
+
     </div>
 
     <div>
-      <table mat-table [dataSource]="dataSource" matSort>
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
-        <!-- ID Column -->
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+
+        <ng-container matColumnDef="ActivityTitle">
+          <th mat-header-cell *matHeaderCellDef> Activity Title </th>
+          <td mat-cell *matCellDef="let row"> {{row.ActivityTitle}} </td>
         </ng-container>
 
-        <!-- Description Column -->
-        <ng-container matColumnDef="desc">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
-          <td mat-cell *matCellDef="let row"> {{row.desc}} </td>
+        <ng-container matColumnDef="Company">
+          <th mat-header-cell *matHeaderCellDef> Company </th>
+          <td mat-cell *matCellDef="let row"> {{row.Company}} </td>
         </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-          <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+        <ng-container matColumnDef="SendingType">
+          <th mat-header-cell *matHeaderCellDef> Sending Type </th>
+          <td mat-cell *matCellDef="let row"> {{row.SendingType == 0 ? 'Direct' : 'Chain'}} </td>
         </ng-container>
 
-        <!-- Color Column -->
-        <ng-container matColumnDef="pdf">
-          <th mat-header-cell *matHeaderCellDef> </th>
-          <td mat-cell *matCellDef="let element;let row">
-            <mat-icon class="clear-icon" (click)="$event.stopPropagation();">
-              vertical_align_bottom</mat-icon>
+        <ng-container matColumnDef="InsertDate">
+          <th mat-header-cell *matHeaderCellDef> Create Date </th>
+          <td mat-cell *matCellDef="let row"> {{row.InsertDate | date:'medium'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="TrackMail">
+          <th mat-header-cell *matHeaderCellDef> TrackEmail </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox class="example-margin" [disabled]="true"  [checked]="row.TrackMail"></mat-checkbox>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Text">
+          <th mat-header-cell *matHeaderCellDef> Text </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-icon class="description-icon" (click)="$event.stopPropagation();">
+              description</mat-icon>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="JBIlist">
+          <th mat-header-cell *matHeaderCellDef> JBI </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-icon class="groups-icon" (click)="$event.stopPropagation();openJBI(row)">
+              groups</mat-icon>
           </td>
         </ng-container>
 

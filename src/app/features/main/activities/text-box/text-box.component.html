@@ -2,7 +2,7 @@
     <div class="d-flex">
         <div>
             <div style="height: 24px;width:26px">
-                <select style="width: 26px;background-color: #efefef;border-radius: 3px;height: 24px;padding-left: 3px;" #fontSize value="10px" (selectionChange)="triggerResize()">
+                <select style="width: 26px;background-color: #efefef;border-radius: 3px;height: 24px;padding-left: 3px;" (change)="resize()" #fontSize value="10px">
                     <option value="10px">10</option>
                     <option value="12px">12</option>
                     <option value="14px">14</option>
@@ -12,7 +12,7 @@
                 </select>
             </div>
             <div><button type="button" (click)="bold()"><b>B</b></button></div>
-            <div> <input type="color" style="max-width: 20px;" [(value)]="this.elementDetails.color" (input)="colorChange($event)"></div>
+            <div> <input type="color" style="max-width: 26px;" [(value)]="this.elementDetails.color" (input)="colorChange($event)"></div>
         </div>
         <div>
             <mat-card-content class="height-100 width-100">
