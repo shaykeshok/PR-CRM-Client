@@ -1,0 +1,42 @@
+<div>
+    <form [formGroup]="filters" class="d-flex">
+        <mat-form-field appearance="outline" class="width-50 mr-3">
+            <mat-label>Company</mat-label>
+            <mat-select name="comps" formControlName="Company">
+                <mat-option *ngFor="let comps of UserCompanies$|async" [value]="comps.Key">
+                    {{comps.Value}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- <mat-form-field appearance="outline" class="width-50 mr-3">
+            <mat-label>Campaigns</mat-label>
+            <mat-select name="campaigns" formControlName="Campaign">
+                <mat-option *ngFor="let campaign of Activities$|async" [value]="campaign.key">
+                    {{campaign.val}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field> -->
+        <mat-form-field appearance="outline">
+            <mat-label>From:</mat-label>
+            <input matInput type="date" placeholder="From:" formControlName="FromDt">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>To:</mat-label>
+            <input matInput type="date" placeholder="To:" formControlName="ToDt">
+        </mat-form-field>
+    </form>
+
+    <button mat-raised-button color="success" style="width: 100%;" (click)="SavePDF()">Download Report</button>
+
+</div>
+<div class="col-md-8" id="htmlData" #htmlData>
+    <table class="table table-bordered">
+        <tr class="table-primary">
+            <th *ngFor="let field of ReportFields$|async">{{field}}</th>
+        </tr>
+        <tr *ngFor="let row of ReportData$|async">
+            <td *ngFor="let item of row.Values">{{item.Value}}</td>
+        </tr>
+    </table>
+</div>

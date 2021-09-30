@@ -1,58 +1,27 @@
-import { ViewChild } from '@angular/core';
+import { ElementRef, ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSidenav } from '@angular/material/sidenav';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { BehaviorSubject, ReplaySubject } from 'rxjs';
 import { IInputConfig } from 'src/app/common/input/input.model';
+import { Report } from 'src/app/common/interfaces.interface';
+import { ReportDataResponse, ReportsResponse } from 'src/app/common/response.model';
+import { ReportsService } from 'src/app/service/reports.service';
+import { ReportPrintDialogComponent } from './report-print-dialog/report-print-dialog.component';
 
-const FILTER: IInputConfig =
-{
+
+
+const FILTER: IInputConfig = {
   type: 'text',
   name: 'filter',
   label: 'Filter',
   formControl: 'filter',
   appearance: 'legacy',
   autocomplete: 'off'
-}
-
-const DATA: ReportData[] = [{
-  id: '1',
-  name: "rep1",
-  desc: "desc rep1"
-}, {
-  id: '2',
-  name: "rep2",
-  desc: "desc rep2"
-}
-  , {
-  id: '3',
-  name: "rep3",
-  desc: "desc rep3"
-}
-  , {
-  id: '4',
-  name: "rep4",
-  desc: "desc rep4"
-}
-, {
-  id: '5',
-  name: "rep4",
-  desc: "desc rep4"
-}
-, {
-  id: '6',
-  name: "rep6",
-  desc: "desc rep6"
-}]
-
-export interface ReportData {
-  id: string;
-  name: string;
-  desc: string;
-}
-
-
+};
 
 
 @Component({
@@ -63,29 +32,31 @@ export interface ReportData {
 export class ReportsComponent implements OnInit {
 
   filterInput = FILTER;
-
-  displayedColumns: string[] = ['id', 'name', 'desc', 'pdf'];
-  dataSource: MatTableDataSource<ReportData>;
+  ReportList$ = new BehaviorSubject<Report[]>(null);
+  displayedColumns: string[] = ['ReportName', 'ReportDescription', 'pdf'];
+  dataSource: MatTableDataSource<Report>;
+  @ViewChild('sidenav', { static: true }) sidenav: MatSidenav;
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  constructor() { }
+  @ViewChild('content', { static: true }) content: ElementRef;
+  constructor(
+    private reportsService: ReportsService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.SetDataSource();
   }
 
   public SetDataSource() {
-
-    //   this.reports$.pipe(
-    //     takeUntil(this.destroy$)
-
-    //   ).subscribe((categories: Category[]) => {
-    this.dataSource = new MatTableDataSource<ReportData>(DATA);
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    //     // this.cdr.detectChanges();
-    //   });
+    this.reportsService.GetReports()
+      .pipe()
+      .subscribe((res: ReportsResponse) => {
+        this.ReportList$.next(res.Reports);
+        this.dataSource = new MatTableDataSource<Report>(res.Reports);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      });
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -96,7 +67,15 @@ export class ReportsComponent implements OnInit {
     }
   }
 
-  exportPDF(d){
-    console.log(d);
+  exportPDF(d) {
+    const dialogData = { ReportId: d, ReportsFilters: this.ReportList$.value.find(item => item.ReportId === d).Filters };
+    const dialogRef = this.dialog.open(ReportPrintDialogComponent, {
+      width: '810px',
+      height: '527px',
+      panelClass: 'dialog-',
+      data: dialogData,
+    });
+
+    return dialogRef.afterClosed().subscribe();
   }
 }
